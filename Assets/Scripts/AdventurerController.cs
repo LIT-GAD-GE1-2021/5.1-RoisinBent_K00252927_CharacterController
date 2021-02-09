@@ -30,6 +30,9 @@ using System.Collections;
  */
 public class AdventurerController : MonoBehaviour
 {
+    public float lowJumpMultiplier = 3.0f;
+    public float fallMultiplier = 5.0f;
+    
     // The speed at which we want the character to move up vertically when jumping.
     // The bigger the number the higher the jump.
     public float jumpSpeed;
@@ -102,7 +105,7 @@ public class AdventurerController : MonoBehaviour
           * + or - sign ( the absolute value of -0.3 for example is 0.3). We use the Mathf.Abs() function to get the
           * absolute value of a number.
           */
-        theAnimator.SetFloat("Speed", Mathf.Abs(hAxis));
+        theAnimator.SetFloat("hspeed", Mathf.Abs(hAxis));
 
         // Every frame i.e. everytime Unity calls Update, call the Physics2D.Overlap function
         // which takes three parameters:
@@ -141,7 +144,7 @@ public class AdventurerController : MonoBehaviour
         // Because the Ground property on the Animator Controller is a boolean we need to use the
         // SetBool function to set it (see it in use below).
 
-        theAnimator.SetBool("Ground", grounded);
+        theAnimator.SetBool("ground", grounded);
         
         // The Animator has a vspeed parameter which should be set to the vertical (y) velocity of
         // the character. This is used by the Animator in a blend tree to blend various 'falling'
@@ -183,6 +186,7 @@ public class AdventurerController : MonoBehaviour
     void FixedUpdate()
     {
         
+        
         // If not jumping then allow the character to be moved left or right
         if (grounded && !jump)
         {
@@ -201,7 +205,7 @@ public class AdventurerController : MonoBehaviour
         }
 
         
-        /*if (theRigidBody.velocity.y < 0)
+        if (theRigidBody.velocity.y < 0)
         {
             /* Okay, this means I'm falling down i.e. y velocity is less than 0. Notice below that I am not
              * setting the velocity to something new but rather I am adding to the existing velocity i.e. 
@@ -220,7 +224,7 @@ public class AdventurerController : MonoBehaviour
              *      
              * so we end up adding a slight downward (negative) velocity to the character and we do this 
              * every frame so the character falls down faster.
-             
+             */
             theRigidBody.velocity += Vector2.up * Physics2D.gravity.y * fallMultiplier * Time.deltaTime;
 
         }
@@ -232,10 +236,10 @@ public class AdventurerController : MonoBehaviour
              * This is similar to above except we are using lowJumpMultiplier. The overall effect is that if 
              * you just tap the spacebar, the character will start to be pulled back down sooner rather than
              * later.
-             
+             */
             theRigidBody.velocity += Vector2.up * Physics2D.gravity.y * lowJumpMultiplier * Time.deltaTime;
         }
-        */
+        
     }
 
     /*
