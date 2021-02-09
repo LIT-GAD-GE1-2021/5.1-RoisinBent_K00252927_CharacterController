@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/.idea.5.1-RoisinBent_CharacterController.iml
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+# Datasource local storage ignored files
+/../../../../../../../../../:\Users\Roisin\GitHub\LIT-GAD-GE1-2021\5.1-RoisinBent_CharacterController\.idea\.idea.5.1-RoisinBent_CharacterController\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
