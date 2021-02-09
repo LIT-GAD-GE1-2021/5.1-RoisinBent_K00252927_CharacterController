@@ -168,6 +168,16 @@ public class Character_Controller : MonoBehaviour
         // collide with any game object then it returns null.
         Collider2D colliderWeCollidedWith = Physics2D.OverlapCircle(groundcheck.position, groundRadius, whatIsGround);
 
+        /*if (colliderWeCollidedWith == null)
+        {
+            //not collided
+        }
+        else
+        {
+            //I have
+        }
+        */
+        
         /*
          * To convert one variable type to another we must "cast" it. In order to cast a variable we place
          * the type we want to cast it to infront of the variable name. I'm casting a variable of type
@@ -175,7 +185,7 @@ public class Character_Controller : MonoBehaviour
          * object) then bool it is converted to will be true, otherwise it will be false. I store this 'converted'
          * value if the variable grounded.
          */
-        grounded = (bool)colliderWeCollidedWith;
+        grounded = (bool)colliderWeCollidedWith; //Instead of a collider or null, becomes true or false
 
         // The Animator Controller attached to the Animator component has a property called Ground
         // which the Animator Controller uses to transition from one state to another. We must set
