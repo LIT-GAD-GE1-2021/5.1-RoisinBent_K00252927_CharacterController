@@ -66,6 +66,8 @@ public class AdventurerController : MonoBehaviour
     // The value of the Horizontal axis (some value between -1 and 1)
     private float hAxis;
 
+    private bool attack;
+
     // A variable to store the RigidBody2D component attached to this game object
     private Rigidbody2D theRigidBody;
 
@@ -78,6 +80,7 @@ public class AdventurerController : MonoBehaviour
         // Set variables to a default state
         jump = false;
         grounded = false;
+        attack = false;
 
         // Get the components we need
         theRigidBody = GetComponent<Rigidbody2D>();
@@ -88,6 +91,8 @@ public class AdventurerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        attack = Input.GetKeyDown(KeyCode.L);
+        
         // Read the spacebar has been pressed down. Note that GetKeyDown will
         // return when the key (spacebar in this case) is pressed down but it
         // won't keep returning true while the key is being pressed
@@ -185,8 +190,11 @@ public class AdventurerController : MonoBehaviour
      */
     void FixedUpdate()
     {
-        
-        
+        if (attack)
+        {
+            StartCoroutine(Attack());
+        }
+
         // If not jumping then allow the character to be moved left or right
         if (grounded && !jump)
         {
@@ -276,6 +284,11 @@ public class AdventurerController : MonoBehaviour
      * The coroutine Dash which sets the dashing variable to true than after the dashDuration has
      * elapsed sets it back to false.
      */
-
+    private IEnumerator Attack()
+    {
+        theAnimator.SetBool("attacking", true);
+        yield return new WaitForSeconds(.5f);
+        theAnimator.SetBool("attacking", false);
+    }
 }
 
