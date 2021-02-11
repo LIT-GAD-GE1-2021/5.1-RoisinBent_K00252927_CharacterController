@@ -91,8 +91,8 @@ public class AdventurerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attack = Input.GetKeyDown(KeyCode.L);
-        
+        attack = Input.GetKey(KeyCode.L);
+
         // Read the spacebar has been pressed down. Note that GetKeyDown will
         // return when the key (spacebar in this case) is pressed down but it
         // won't keep returning true while the key is being pressed
@@ -179,7 +179,6 @@ public class AdventurerController : MonoBehaviour
                 Flip();
             }
         }
-       
     }
 
     /*
@@ -190,13 +189,14 @@ public class AdventurerController : MonoBehaviour
      */
     void FixedUpdate()
     {
+
         if (attack)
         {
             StartCoroutine(Attack());
         }
 
         // If not jumping then allow the character to be moved left or right
-        if (grounded && !jump)
+        if (grounded && !jump && !attack)
         {
             /* Set the velocity of the RigidBody component attached to the game object. We will keep the 
              * vertical velocity the same (it should be 0 anyway as the character is in the ground) but we will 
